@@ -25,6 +25,7 @@ function App() {
   const [updateID, setUpdateID] = useState<number | null>(null)
 
   const baseUrl = process.env.REACT_APP_BASE_URL;
+  console.log(baseUrl)
 
   useEffect(() => {
     const getUser = async() => {
@@ -36,7 +37,7 @@ function App() {
       }
     }
     getUser()
-  }, [updateUI])
+  }, [updateUI, baseUrl])
 
   const openPopup = () => {
     openChange(true)
