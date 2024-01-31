@@ -1,0 +1,21 @@
+.action{
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.action.edit{
+    margin-right: .7rem;
+}
+
+.tblcontainer::-webkit-scrollbar {
+    width: 0.625rem;
+    height: 0.625rem;
+}
+.tblcontainer::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+.tblcontainer::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+.tblcontainer::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

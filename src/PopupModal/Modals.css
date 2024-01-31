@@ -1,0 +1,52 @@
+.success-added-popup, .success-deleted-popup{
+    width: 80% !important;
+    font-size: 0.9375rem !important;
+}
+.success-added-popup .swal2-title,
+.success-deleted-popup .swal2-title{
+    margin: 0.5em .6em !important;
+}
+.swal2-container {
+  z-index: 10000 !important; 
+  font-family: 'Raleway' ,sans-serif !important;
+}
+
+.confirm-changes-popup{
+  z-index: 10001 !important; 
+  width: 25em !important;
+}
+
+.confirm-delete-popup{
+    width: 23em !important;
+}
+.popup-alert{
+    width: 18em !important;
+}
+.confirm-delete-popup .swal2-icon{
+    width: 4em;
+    height: 4em;
+}
+.confirm-delete-popup .swal2-icon .swal2-icon-content{
+    font-size: 3em;
+}
+
+.confirm-changes-popup h2,
+.confirm-delete-popup h2,
+.popup-alert h2{
+    font-size: 1.3rem !important;
+}
+.confirm-changes-popup button,
+.confirm-delete-popup button,
+.popup-alert button{
+    font-size: 0.9375rem !important;
+    padding: .6em 1em !important;
+}
+.popup-alert button{
+    width: 8em;
+}
+.confirm-changes-popup button{
+    width: 9em !important;
+}
+.confirm-delete-popup button{
+    width: 10em !important;
+}
