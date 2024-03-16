@@ -24,7 +24,7 @@ function App() {
   const [updateUI, setUpdateUI] = useState(false)
   const [updateID, setUpdateID] = useState<number | null>(null)
 
-  const baseUrl = process.env.REACT_APP_BASE_URL;
+  const baseUrl = process.env.REACT_APP_BASE_API_URL;
 
   useEffect(() => {
     const getUser = async() => {
