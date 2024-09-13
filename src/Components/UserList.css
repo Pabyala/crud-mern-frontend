@@ -1,9 +1,9 @@
 .action{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     cursor: pointer;
 }
 .action.edit{
-    margin-right: .7rem;
+    /* margin-right: .7rem; */
 }
 
 .tblcontainer::-webkit-scrollbar {
@@ -18,4 +18,22 @@
 }
 .tblcontainer::-webkit-scrollbar-thumb:hover {
     background: #555; 
+}
+.tblActions{
+    /* display: flex !important; */
+}
+
+.tblePaper{
+    /* overflow: hidden; */
+}
+.tblcontainer{
+    /* height: 100%; */
+    /* overflow: scroll;
+    height: 100vh; */
+    /* max-height: 100% !important; */
+}
+.tblcontainer table{
+    /* width: 100%;
+    border-collapse: collapse;
+    border-radius: 0.5rem; */
 }

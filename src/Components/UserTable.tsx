@@ -24,9 +24,25 @@ interface UserDataProps {
 export default function UserTable({ users,  updateMode, setUpdateUI, setUsers }: UserDataProps) {
 
     return (
-        <Paper className="tblePaper" sx={{ overflow: 'hidden' }}>
-            <TableContainer className="tblcontainer" sx={{ maxHeight: 650, width: '100%' }}>
-                <Table sx={{ minWidth: 500 }} stickyHeader aria-label="sticky table">
+        <Paper className="tblePaper" sx={{ 
+            overflow: 'hidden' ,
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+        }}>
+            <TableContainer className="tblcontainer" sx={{ 
+                // maxHeight: 340, 
+                // width: '100%',
+                overflowX: 'auto',
+                flex: 1, 
+                display: 'flex',
+                flexDirection: 'column',
+            }}>
+                <Table sx={{ 
+                        minWidth: 500 
+                    }} stickyHeader aria-label="sticky table"
+                >
                     <TableRowData/>
                     <UserList
                         users={users}

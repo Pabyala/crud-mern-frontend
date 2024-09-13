@@ -1,12 +1,12 @@
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { confirmationErrorEmail, confirmationValidInput, showConfirmationDialog, showSuccessErrorToast } from './PopupModal/Modals'
 import Form from './Components/Form';
 import HeroSpace from './Components/HeroSpace';
 import UserTable from './Components/UserTable';
+import './index.css'
+import Table from './Components/Table';
 
 interface UserData {
   _id: number,
@@ -134,31 +134,44 @@ function App() {
 
   return (
     <main>
-      <div className="app container">
-        <HeroSpace/>
-        <div className='title-btn-header'>
-          <h4>User Data</h4>
-          <Button onClick={openPopup} color='primary' variant='contained'>Add</Button>
-          <Form
-            open={open}
-            closePopup={closePopup}
-            updateID={updateID}
-            updateUser={updateUser}
-            addUser={addUser}
-            userName={userName}
-            userEmail={userEmail}
-            userNumber={userNumber}
-            setUserName={setUserName}
-            setUserEmail={setUserEmail}
-            setUserNumber={setUserNumber}
+      <div className="app container mx-auto">
+        <div className='mb-2 md:mb-2.5 lg:mb-3'>
+          <HeroSpace/>
+          <div className='flex justify-between items-center'>
+            <h4 className='text-sm font-bold'>User data list:</h4>
+            <button className="bg-white text-sm hover:bg-gray-100 text-gray-800 font-semibold py-1.5 px-5 border border-gray-400 rounded shadow"
+            onClick={openPopup}>
+              Add
+            </button>
+            <Form
+              open={open}
+              closePopup={closePopup}
+              updateID={updateID}
+              updateUser={updateUser}
+              addUser={addUser}
+              userName={userName}
+              userEmail={userEmail}
+              userNumber={userNumber}
+              setUserName={setUserName}
+              setUserEmail={setUserEmail}
+              setUserNumber={setUserNumber}
+            />
+          </div>
+        </div>
+        <div className='user-dataInfo'>
+          {/* <UserTable
+            users={users}
+            setUsers={setUsers}
+            updateMode={updateMode}
+            setUpdateUI={setUpdateUI}
+          /> */}
+          <Table
+            users={users}
+            setUsers={setUsers}
+            updateMode={updateMode}
+            setUpdateUI={setUpdateUI}
           />
         </div>
-        <UserTable
-          users={users}
-          setUsers={setUsers}
-          updateMode={updateMode}
-          setUpdateUI={setUpdateUI}
-        />
       </div>
     </main>
   );
