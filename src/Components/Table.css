@@ -1,0 +1,15 @@
+.tablUsers::-webkit-scrollbar {
+  width: 5px;
+}
+
+.tablUsers::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.tablUsers::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+.tablUsers::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

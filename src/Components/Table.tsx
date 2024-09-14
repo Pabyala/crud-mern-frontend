@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { confirmationDelete, showSuccessErrorToast } from '../PopupModal/Modals';
+import './Table.css'
 
 interface UserData {
     _id: number,
@@ -35,7 +36,7 @@ export default function Table({ users, updateMode, setUsers, setUpdateUI }: User
         <div className="flex flex-col">
             <div className="-m-1.5 overflow-x-auto">
                 <div className="p-1.5 min-w-full inline-block align-middle">
-                    <div className="border rounded-lg border border-gray-400 overflow-hidden">
+                    <div className="border rounded-lg border-gray-400 overflow-hidden">
                         <div className="relative">
                             {/* Table Header */}
                             <div className="bg-gray-50 border-b">
@@ -52,7 +53,8 @@ export default function Table({ users, updateMode, setUsers, setUpdateUI }: User
                             </div>
 
                             {/* Table Body */}
-                            <div className="max-h-60 overflow-y-auto">
+                            <div className="tablUsers overflow-y-scroll max-h-[calc(100vh-200px)]">
+                            {/* <div className="tablUsers overflow-y-scroll flex-1"> */}
                                 <table className="min-w-full divide-y divide-gray-200">
                                     <tbody className="divide-y divide-gray-200">
                                         {users.map((user) => (

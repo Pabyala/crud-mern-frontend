@@ -7,6 +7,7 @@ import HeroSpace from './Components/HeroSpace';
 import UserTable from './Components/UserTable';
 import './index.css'
 import Table from './Components/Table';
+import FormModal from './Components/FormModal';
 
 interface UserData {
   _id: number,
@@ -131,6 +132,7 @@ function App() {
     }
   }
 
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <main>
@@ -139,32 +141,20 @@ function App() {
           <HeroSpace/>
           <div className='flex justify-between items-center'>
             <h4 className='text-sm font-bold'>User data list:</h4>
-            <button className="bg-white text-sm hover:bg-gray-100 text-gray-800 font-semibold py-1.5 px-5 border border-gray-400 rounded shadow"
-            onClick={openPopup}>
-              Add
+            <button 
+              className="bg-white text-sm hover:bg-gray-100 text-gray-800 font-semibold py-1.5 px-5 border border-gray-400 rounded shadow"
+              onClick={() => setShowModal(true)}
+            >
+              Show
             </button>
-            <Form
-              open={open}
-              closePopup={closePopup}
-              updateID={updateID}
-              updateUser={updateUser}
-              addUser={addUser}
-              userName={userName}
-              userEmail={userEmail}
-              userNumber={userNumber}
-              setUserName={setUserName}
-              setUserEmail={setUserEmail}
-              setUserNumber={setUserNumber}
-            />
           </div>
         </div>
-        <div className='user-dataInfo'>
-          {/* <UserTable
-            users={users}
-            setUsers={setUsers}
-            updateMode={updateMode}
-            setUpdateUI={setUpdateUI}
-          /> */}
+        {showModal && (
+        <FormModal onClose={() => setShowModal(false)} />
+      )}
+
+        {/* occupy the remaining size of 100vh */}
+        <div className='user-dataInfo z-0 flex-grow'>
           <Table
             users={users}
             setUsers={setUsers}
