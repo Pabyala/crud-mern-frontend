@@ -64,7 +64,7 @@ export const confirmationErrorEmail = (errorMessage: string) => {
 
 export const confirmationValidInput = () => {
   Swal.fire({
-    title: "Enter valid input",
+    title: "Please ensure all required fields are filled out correctly before submitting the form.",
     customClass: {
       popup: 'popup-alert'
     }

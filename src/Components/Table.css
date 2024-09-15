@@ -1,5 +1,6 @@
 .tablUsers::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
 
 .tablUsers::-webkit-scrollbar-track {
