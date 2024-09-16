@@ -1,6 +1,6 @@
 .success-added-popup, .success-deleted-popup{
     width: 80% !important;
-    font-size: 0.9375rem !important;
+    font-size: 0.875rem !important;
 }
 .success-added-popup .swal2-title,
 .success-deleted-popup .swal2-title{
@@ -33,16 +33,18 @@
 .confirm-changes-popup h2,
 .confirm-delete-popup h2,
 .popup-alert h2{
-    font-size: 1.3rem !important;
+    font-size: .9rem !important;
 }
 .confirm-changes-popup button,
 .confirm-delete-popup button,
 .popup-alert button{
-    font-size: 0.9375rem !important;
-    padding: .6em 1em !important;
+    font-size: 0.8rem !important;
 }
 .popup-alert button{
     width: 8em;
+}
+.popup-alert h2{
+    padding: 1.7rem 2em 0 !important;
 }
 .confirm-changes-popup button{
     width: 9em !important;

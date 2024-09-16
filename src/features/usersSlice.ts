@@ -30,23 +30,33 @@ const initialState: UsersState = {
 const baseUrl = process.env.REACT_APP_BASE_API_URL;
 
 // get all USERS
-export const fetchUsers = createAsyncThunk<User[]>( 'users/fetchUsers', async () => {
-  const response = await axios.get(`${baseUrl}/get`);
-  return response.data;
+export const fetchUsers = createAsyncThunk<User[]>( 'users/fetchUsers', async ( _, { rejectWithValue }) => {
+  try {
+    const response = await axios.get(`${baseUrl}/get`);
+    return response.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      if (error.response.status === 500) {
+        return rejectWithValue(error.response.data.message || 'Something went wrong');
+      }
+      return rejectWithValue(error.response.data.message || 'Failed to fetch users');
+    }
+    return rejectWithValue('Failed to fetch users');
+  }
 });
 
 // add new USER
 export const addUser = createAsyncThunk<User, Omit<User, '_id'>>('users/addUser', async (userData, { rejectWithValue } ) => {
   try {
     const response = await axios.post(`${baseUrl}/save`, userData);
-    console.log("Response: ", response.data)
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      console.log("Error: ", error.response.data.message )
-      if (error.response.status === 400) {
-        console.log("Bad req. : ", error.response.data.message )
-        return rejectWithValue(error.response.data.message || 'Bad Request');
+      if (error.response.status === 404) {
+        return rejectWithValue(error.response.data.message || 'User with the same email already exists.');
+      }
+      if (error.response.status === 500) {
+        return rejectWithValue(error.response.data.message || 'Something went wrong');
       }
       return rejectWithValue(error.response.data.message || 'Failed to add user');
     }
@@ -55,26 +65,33 @@ export const addUser = createAsyncThunk<User, Omit<User, '_id'>>('users/addUser'
 });
 
 // delete USER
-export const deleteUser = createAsyncThunk<number, number>('users/deleteUser', async (userId) => {
-  await axios.delete(`${baseUrl}/delete/${userId}`);
-  return userId; // Return the user ID of the deleted user
+export const deleteUser = createAsyncThunk<number, number>('users/deleteUser', async (userId, { rejectWithValue } ) => {
+  try {
+     await axios.delete(`${baseUrl}/delete/${userId}`);
+  return userId;
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response) {
+      if (error.response.status === 404) {
+        return rejectWithValue(error.response.data.message || 'User not found');
+      }
+      return rejectWithValue(error.response.data.message || 'Failed to update user');
+    }
+    return rejectWithValue('Failed to update user');
+  }
+
 });
 
 // update USER
 export const updateUser = createAsyncThunk<User, User>('users/updateUser', async (userData, { rejectWithValue }) => {
   try {
     const response = await axios.put(`${baseUrl}/update/${userData._id}`, userData);
-    console.log("Response data after update: ", response.data);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
-      console.log("Error: ", error.response.data.message )
       if (error.response.status === 400) {
-        console.log("Bad req. 400 update : ", error.response.data.message )
         return rejectWithValue(error.response.data.message || 'User with the same email already exists.');
       }
       if (error.response.status === 404) {
-        console.log("Bad req. 404 update : ", error.response.data.message )
         return rejectWithValue(error.response.data.message || 'User not found');
       }
       return rejectWithValue(error.response.data.message || 'Failed to update user');
@@ -121,9 +138,6 @@ const usersSlice = createSlice({
       })
       
       //add user
-      // .addCase(addUser.pending, (state) => {
-      //   state.isLoading = true;
-      // })
       .addCase(addUser.fulfilled, (state, action) => {
         state.isLoading = false;
         state.users.push(action.payload); 
@@ -132,10 +146,8 @@ const usersSlice = createSlice({
       .addCase(addUser.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
-        console.log("Errors: ", action.payload)
       })
     //delete the user
-    // builder
     .addCase(deleteUser.fulfilled, (state, action) => {
         state.users = state.users.filter(user => user._id !== action.payload);
         state.response = "Deleted successfully"
@@ -145,13 +157,8 @@ const usersSlice = createSlice({
       })
       
       //update user
-      // .addCase(addUser.pending, (state) => {
-      //   state.isLoading = true;
-      // })
       .addCase(updateUser.fulfilled, (state, action) => {
         state.isLoading = false;
-        const updateUser = action.payload;
-        console.log("Updated user: ", updateUser);
         state.users = state.users.map(user =>
           user._id === action.payload._id ? action.payload : user
         );

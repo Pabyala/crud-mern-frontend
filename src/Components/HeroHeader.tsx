@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function HeroSpace() {
     return (
         <div className='px-1 py-2'>
