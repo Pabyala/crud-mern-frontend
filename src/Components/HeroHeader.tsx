@@ -4,6 +4,9 @@ export default function HeroSpace() {
             <h2 className='text-lg font-bold text-center mb-2 lg:text-xl'>
                 CRUD Operation
             </h2>
+            <p className="text-sm text-black text-center mb-1">
+                Backend Github: <a href="https://github.com/Pabyala/crud-mern-backend" className="underline" target="_blank" rel="noreferrer">Get Code</a>
+            </p>
             <p className='text-sm text-black text-center'>
                 Explore the functionality of CREATING, READING, UPDATING, and DELETING 
                 user records in this web application. Built with ReactJS, TypeScript,
