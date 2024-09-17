@@ -10,6 +10,7 @@ import UserTable from './Components/UserTable';
 function App() {
   const dispatch = useDispatch<AppDispatch>();
   const showModal = useSelector((state: RootState) => state.users.showModal);
+  const { isLoading } = useSelector((state: RootState) => state.users);
 
   return (
     <main>
@@ -20,6 +21,7 @@ function App() {
             <h4 className='text-sm font-bold'>User data list:</h4>
             <button 
               className="bg-white text-sm hover:bg-gray-100 text-gray-800 font-semibold py-1.5 px-5 border border-gray-400 rounded shadow"
+              disabled={isLoading}
               onClick={() => dispatch(setShowModal(true))}
             >
               Add

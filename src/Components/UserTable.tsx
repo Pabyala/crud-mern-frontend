@@ -16,7 +16,7 @@ export default function UserTable() {
     }, [dispatch]);
 
     if(isLoading) {
-        return <p className="text-center">Loading...</p>;
+        return <p className="text-center">Loading... Please wait a moment.</p>;
     }
 
     const handleDelete = async (userId: number) => {
